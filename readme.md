@@ -1,4 +1,6 @@
-# MERN Stack Template
+# Top Five
+
+Based on the amazing MERN Template from [Coding House](https://github.com/CodingHouseFI/mern-template)
 
 Includes:
 
@@ -13,7 +15,7 @@ and more!
 
 To start:
 ```
-npm i
+npm install
 npm start (or nodemon)
 ```
 
