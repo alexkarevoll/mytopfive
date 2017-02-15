@@ -1,18 +1,46 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux'
+import {fetchAlbums} from '../actions/index'
 
-export default class AlbumList extends Component {
+class AlbumList extends Component {
 
   componentWillMount() {
-    let albums = {}
-    axios('/api/albums').then((response) => console.log(response))
+    this.props.fetchAlbums()
+  }
+
+  renderAlbums() {
+    console.log(this.props.albums.albums)
+    return this.props.albums.albums.map((album) => {
+      return (
+        <tr key={album._id}>
+          <td>{album.artist}</td>
+          <td>{album.title}</td>
+          <td><img src={album.img}/></td>
+        </tr>
+      )
+    })
   }
 
   render () {
     return (
-      <div>
-        <p>Album List is here</p>
-      </div>
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.renderAlbums()}
+        </tbody>
+      </table>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {albums: state.albums}
+}
+
+export default connect (mapStateToProps, {fetchAlbums})(AlbumList)

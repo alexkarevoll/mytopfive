@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import AlbumList from './album-list'
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      albums: {}
-    }
-  }
-
   render() {
     return (
       <div>
