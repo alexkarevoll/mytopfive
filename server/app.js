@@ -13,7 +13,7 @@ const webpackConfig = require('../webpack.config');
 
 // DB CONNECT
 require('mongoose').connect(MONGO_URI, err => {
-  if(err) throw err;
+  if(err) return console.log(err);
   console.log(`MongoDB connected to ${MONGO_URI}`);
 });
 
