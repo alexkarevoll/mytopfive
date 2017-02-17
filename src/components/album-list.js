@@ -5,20 +5,31 @@ import {fetchAlbums} from '../actions/index'
 class AlbumList extends Component {
 
   componentWillMount() {
-    this.props.fetchAlbums()
+    this.props.fetchAlbums('Dookie')
   }
 
   renderAlbums() {
-    console.log(this.props.albums.albums)
-    return this.props.albums.albums.map((album) => {
+    const spotifyData = this.props.albums.albums.albums.items
+    if (!spotifyData){
       return (
-        <tr key={album._id}>
-          <td>{album.artist}</td>
-          <td>{album.title}</td>
-          <td><img src={album.img}/></td>
+        <tr>
+          <td>placeholder</td>
+          <td>placeholder</td>
+          <td>placeholder</td>
         </tr>
       )
-    })
+    }
+    else {
+      return spotifyData.map((album) => {
+        return (
+          <tr key={album.id}>
+            <td>{album.artists[0].name}</td>
+            <td>{album.name}</td>
+            <td><img src={album.images[1].url}/></td>
+          </tr>
+        )
+      })
+    }
   }
 
   render () {
@@ -28,7 +39,7 @@ class AlbumList extends Component {
           <tr>
             <th>Artist</th>
             <th>Album</th>
-            <th>Image</th>
+            <th>Cover</th>
           </tr>
         </thead>
         <tbody>
